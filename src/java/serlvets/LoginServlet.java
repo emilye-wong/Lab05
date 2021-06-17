@@ -23,7 +23,8 @@ public class LoginServlet extends HttpServlet {
         if (logout != null) {
             session.invalidate();
             request.setAttribute("logoutMess", true);
-            return;
+            session = request.getSession();
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
@@ -43,17 +44,14 @@ public class LoginServlet extends HttpServlet {
 
         if (user == null || user.equals("") || password == null || password.equals("")) {
             request.setAttribute("nullMess", true);
-            return;
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
         if (account.login(user, password) != null) {
             session.setAttribute("user", user);
             response.sendRedirect("home");
         } else {
             request.setAttribute("invalidMess", true);
-            return;
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
-
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
-
 }

@@ -32,7 +32,7 @@
             </c:if>
                 
                 <c:if test="${invalidMess}">
-                    <div>Invalid login</div>
+                    <div>Username or password is incorrect.</div>
                 </c:if>
         </form>
     </body>
