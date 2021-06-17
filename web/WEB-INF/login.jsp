@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,11 +16,24 @@
         <h1>Login</h1>
         <form method="post" action="login">
             <label>Username: </label>
-            <input type="text" name="user" value="">
+            <input type="text" name="user" value="${user}">
             <br>
             <label>Password: </label>
-            <input type="text" name="password" value="">
-            <input type="submit" value="Login in">
+            <input type="password" name="password" value="${password}">
+            <br>
+            <input type="submit" value="Log in">
+
+            <c:if test="${logoutMess}">
+                <div>You have successfully logged out.</div>
+            </c:if>
+
+            <c:if test="${nullMess}">
+                <div>Invalid login</div>
+            </c:if>
+                
+                <c:if test="${invalidMess}">
+                    <div>Invalid login</div>
+                </c:if>
         </form>
     </body>
 </html>
