@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.User;
 import services.AccountService;
 
 public class LoginServlet extends HttpServlet {
@@ -23,10 +24,10 @@ public class LoginServlet extends HttpServlet {
         if (logout != null) {
             session.invalidate();
             request.setAttribute("logoutMess", true);
-            session = request.getSession();
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            return;
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        response.sendRedirect("home");
     }
 
     @Override
